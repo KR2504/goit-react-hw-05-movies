@@ -9,6 +9,8 @@ export default function MovieDetails() {
     const location= useLocation();
     const backLinkHref = location.state?.from ?? "/movies";
     const movieName = location.state?.from.search;
+    
+    console.log(location.state?.from)
 
     useEffect(() => {
         getMovieDetails(movieId).then(movie => {
@@ -42,15 +44,17 @@ export default function MovieDetails() {
             <p>Adittional information</p>
             <ul>
                 <li>
-                    {location.state?.from?.pathname === '/' ?
-                        <Link to='cast' state={{ from: `/` }}>Cast</Link> :
+                    {location.state?.from.search === `${movieName}` ?
                         <Link to='cast' state={{ from: `/movies${movieName}` }}>Cast</Link>
+                        :
+                        <Link to='cast' state={{ from: `/` }}>Cast</Link>
                     }
                 </li>
                 <li>
-                    {location.state?.from?.pathname === '/' ?
-                        <Link to='reviews' state={{ from: `/` }}>Reviews</Link> :
+                    {location.state?.from.search === `${movieName}` ?
                         <Link to='reviews' state={{ from: `/movies${movieName}` }}>Reviews</Link>
+                        :
+                        <Link to='reviews' state={{ from: `/` }}>Reviews</Link>
                     }
                 </li>
             </ul>
