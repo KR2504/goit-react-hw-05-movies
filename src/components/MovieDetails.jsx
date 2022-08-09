@@ -6,11 +6,9 @@ import s from "./styles/styles.module.css";
 export default function MovieDetails() {
     const [data, setData] = useState([]);
     const { movieId } = useParams();
-    const location= useLocation();
+    const location = useLocation();
     const backLinkHref = location.state?.from ?? "/movies";
     const movieName = location.state?.from.search;
-    
-    console.log(location.state.from)
 
     useEffect(() => {
         getMovieDetails(movieId).then(movie => {
@@ -23,7 +21,7 @@ export default function MovieDetails() {
             <Link to={backLinkHref}>
                 <button>Go back</button>
             </Link>
-            
+
             <div className={s.filmImg}>
                 <img src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`} alt="" width={250} />
                 <div className={s.padding}>
@@ -32,7 +30,7 @@ export default function MovieDetails() {
 
                     <h3>Overview</h3>
                     <p>{data.overview}</p>
-            
+
                     <h4>Genres</h4>
                     <ul>
                         {data.genres?.map(({ id, name }) =>
@@ -44,10 +42,10 @@ export default function MovieDetails() {
             <p>Adittional information</p>
             <ul>
                 <li>
-                    <Link to='cast' state={{ from: {pathname: `/movies`, search:`${movieName}`} }}>Cast</Link>
+                    <Link to='cast' state={{ from: { pathname: `/movies`, search: `${movieName}` } }}>Cast</Link>
                 </li>
                 <li>
-                    <Link to='reviews' state={{ from: {pathname: `/movies`, search:`${movieName}`} }}>Reviews</Link>
+                    <Link to='reviews' state={{ from: { pathname: `/movies`, search: `${movieName}` } }}>Reviews</Link>
                 </li>
             </ul>
             <Suspense fallback={<div>Loading...</div>}>
