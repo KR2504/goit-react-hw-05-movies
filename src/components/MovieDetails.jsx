@@ -10,7 +10,7 @@ export default function MovieDetails() {
     const backLinkHref = location.state?.from ?? "/movies";
     const movieName = location.state?.from.search;
     
-    console.log(location.state?.from)
+    console.log(location.state.from)
 
     useEffect(() => {
         getMovieDetails(movieId).then(movie => {
@@ -44,18 +44,10 @@ export default function MovieDetails() {
             <p>Adittional information</p>
             <ul>
                 <li>
-                    {location.state?.from.search === `${movieName}` ?
-                        <Link to='cast' state={{ from: `/movies${movieName}` }}>Cast</Link>
-                        :
-                        <Link to='cast' state={{ from: `/` }}>Cast</Link>
-                    }
+                    <Link to='cast' state={{ from: `/movies${movieName}` }}>Cast</Link>
                 </li>
                 <li>
-                    {location.state?.from.search === `${movieName}` ?
-                        <Link to='reviews' state={{ from: `/movies${movieName}` }}>Reviews</Link>
-                        :
-                        <Link to='reviews' state={{ from: `/` }}>Reviews</Link>
-                    }
+                    <Link to='reviews' state={{ from: `/movies${movieName}` }}>Reviews</Link>
                 </li>
             </ul>
             <Suspense fallback={<div>Loading...</div>}>
