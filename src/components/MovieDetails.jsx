@@ -44,10 +44,10 @@ export default function MovieDetails() {
             <p>Adittional information</p>
             <ul>
                 <li>
-                    <Link to='cast' state={{ from: `/movies${movieName}` }}>Cast</Link>
+                    <Link to='cast' state={{ from: {pathname: `/movies`, search:`${movieName}`} }}>Cast</Link>
                 </li>
                 <li>
-                    <Link to='reviews' state={{ from: `/movies${movieName}` }}>Reviews</Link>
+                    <Link to='reviews' state={{ from: {pathname: `/movies`, search:`${movieName}`} }}>Reviews</Link>
                 </li>
             </ul>
             <Suspense fallback={<div>Loading...</div>}>
